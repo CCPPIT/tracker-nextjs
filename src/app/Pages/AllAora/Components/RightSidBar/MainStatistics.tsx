@@ -1,18 +1,22 @@
 import { CircularProgressbar } from 'react-circular-progressbar'
 import React from 'react'
-import { defaultColor } from '@/constants/Colors';
+import { darkModeColor, defaultColor } from '@/constants/Colors';
 import {Cell, Pie, PieChart}from "recharts"
+import useGlobalContextProvider from '@/context/contextApi';
 
 type Props = {}
 
 const MainStatistics = (props: Props) => {
+    const {darkModeObject:{darkModeItems}}=useGlobalContextProvider();
     const statistics=[
-        {id:1,num:7,subTitle:"Best streaks"},
+        {id:1,num:30,subTitle:"Best streaks"},
         {id:2,num:7,subTitle:"Perfect days"}
 
     ]
   return (
-    <div className='flex mx-4 flex-col gap-6 bg-slate-50 rounded-xl p-5 justify-center items-center mt-20'>
+    <div
+    style={{backgroundColor:darkModeItems?darkModeColor.backgroundSlat:defaultColor.backgroundSlat}}
+     className='flex mx-4 flex-col gap-6  rounded-xl p-5 pt-7 justify-center items-center mt-14'>
         <span className='font-bold text-xl cursor-pointer hover:text-customed'>Statistics</span>
         {/**the circular progres bar */}
         <div className='relative pt-3'>
@@ -32,8 +36,10 @@ const MainStatistics = (props: Props) => {
                 <div key={singleIndex} className='flex items-center gap-3'>
                     <div className='w-2 h-2 bg-customed rounded-full'></div>
                     <div className='text-[12px]'>
-                        <span className='flex flex-col font-bold'>{singleItem.num}</span>
-                        <span className='text-gray-500'>{singleItem.subTitle}</span>
+                        <span className='flex flex-col font-bold text-gray-400'>{singleItem.num}</span>
+                        <span 
+                        style={{color:darkModeItems?darkModeColor.textColor:defaultColor.textColor50}}
+                        className=''>{singleItem.subTitle}</span>
 
 
                     </div>
@@ -66,9 +72,10 @@ const CircularProgressBar:React.FC<CircularProgressBarProps>=({
        width={200}
        height={160}
        margin={{top:-20,right:0,bottom:40,left:0}}
+       
        >
         
-        <Pie data={data} dataKey={"value"} startAngle={180} endAngle={-180} paddingAngle={0} innerRadius={66} cx={100} cy={100} outerRadius={progress===100?80:70} fill="#8884d8" >
+        <Pie data={data} dataKey={"value"} stroke='none' startAngle={180} endAngle={-180} paddingAngle={0} innerRadius={66} cx={100} cy={100} outerRadius={progress===100?80:70} fill="#8884d8" >
             {data.map((entry,index)=>(
                 <Cell key={`cell-${index}`} fill={COLORS[index%COLORS.length]}/>
             ))}

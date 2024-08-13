@@ -7,7 +7,10 @@ import { menuItemType } from '@/Types/MenuItemType'
 import SideBar from '@/components/dashboard/sidebar/SideBar'
 import AllAora from '../Pages/AllAora/AllAora'
 import Statistics from '../Pages/Statistics/Statistics'
-import Areas from '../Pages/Areas/Areas'
+import Areas from '../Pages/Areas/Areas';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { darkModeColor, defaultColor } from '@/constants/Colors'
 
 
 
@@ -15,7 +18,7 @@ type Props = {}
 
 const DashBoard = (props: Props) => {
  
-  const {menuItemsObject:{menuItems}}=useGlobalContextProvider();
+  const {menuItemsObject:{menuItems},darkModeObject:{darkModeItems}}=useGlobalContextProvider();
   const [selectedMenu,setSelectedMenue]=useState<menuItemType | null>(null);
   let selectComponent = null;
 
@@ -44,9 +47,16 @@ const DashBoard = (props: Props) => {
 
   }
   return (
-    <div className='flex bg-slate-50'>
+    <div
+    style={{backgroundColor:darkModeItems?darkModeColor.backgroundSlat:defaultColor.backgroundSlat}}
+     className='flex'>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+
       <SideBar/>
       {selectComponent}
+      <BlackSoftLayer/>
+      </LocalizationProvider>
+
 
 
 
@@ -68,3 +78,11 @@ const DashBoard = (props: Props) => {
 }
 
 export default DashBoard
+function BlackSoftLayer(){
+  const {openSideBarObject:{openSideBar}}=useGlobalContextProvider();
+  return(
+    <div className={`w-full h-full bg-black fixed top-0 left-0 opacity-20 z-40 ${openSideBar ? "fixed" : "hidden"}`}>
+
+    </div>
+  )
+}

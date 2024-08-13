@@ -76,6 +76,13 @@ const config = {
     colors:{
       customed:"#d90429",
       white:"#fff",
+      black:"#000",
+      textColor:"#000000",
+      background:"#FFFFFF",
+      darkModeColor:{
+        background:"#003049",
+        textColor:"#FFFFFF"
+      },
       slate:{
         50:"#f8fafc",
         100:"#f1f5f9",

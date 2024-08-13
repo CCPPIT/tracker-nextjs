@@ -1,4 +1,5 @@
-import { defaultColor } from '@/constants/Colors'
+import { darkModeColor, defaultColor } from '@/constants/Colors'
+import useGlobalContextProvider from '@/context/contextApi'
 import { faCode } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CheckCircle from '@mui/icons-material/CheckCircle'
@@ -10,10 +11,18 @@ import React from 'react'
 type Props = {}
 
 const AoraComplated = (props: Props) => {
+  const {darkModeObject:{darkModeItems}}=useGlobalContextProvider();
+
+  
   return (
-    <div className='bg-white mt-7 p-8 rounded-md'>
+    <div
+    style={{color:darkModeItems?darkModeColor.textColor:defaultColor.textColor,
+      backgroundColor:darkModeItems?darkModeColor.background:defaultColor.background
+
+    }}
+     className=' mt-7 p-8 rounded-md'>
         <span className='font-bold text-lg mb-2'>  Aora Complated</span>
-        <div className='mt-4 opacity-50'>
+        <div className='mt-7 opacity-50'>
             <AoraCard/>
             <AoraCard/>
 
@@ -25,6 +34,7 @@ const AoraComplated = (props: Props) => {
 
 export default AoraComplated
 function AoraCard(){
+  const {darkModeObject:{darkModeItems}}=useGlobalContextProvider();
     return(
       <div className='flex p-3 items-center justify-between'>
         <Checkbox
@@ -34,9 +44,11 @@ function AoraCard(){
             color:defaultColor.default
         }}}
         />
-        <div className='flex justify-between gap-2 w-full p-3 py-4 rounded-md bg-slate-50 border'>
+        <div
+        style={{backgroundColor:darkModeItems?darkModeColor.backgroundSlat:defaultColor.backgroundSlat}}
+         className='flex justify-between gap-2 w-full p-3 py-4 rounded-md'>
             <div className='w-full'>
-                <div className='flex gap-2 justify-between border'>
+                <div className='flex gap-2 justify-between'>
                     <div className='flex gap-2 items-center'>
                         <FontAwesomeIcon icon={faCode} width={20} height={20}
                         className='p-3 rounded-full w-4 h-4 bg-customed text-white'
@@ -46,7 +58,7 @@ function AoraCard(){
                     </div>
                     <div className='w-10 flex items-center justify-center'>
                    <IconButton>
-                    <MoreVert/>
+                    <MoreVert sx={{color:darkModeItems?"white":"gray"}}/>
                    </IconButton>
                 </div>
 

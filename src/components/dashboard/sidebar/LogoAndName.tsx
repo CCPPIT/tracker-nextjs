@@ -7,12 +7,12 @@ type Props = {}
 const LogoAndName = (props: Props) => {
   return (
     <div className='flex  gap-2 items-center sm:justify-start justify-center'>
-        <span className='text-2xl font-light flex items-center gap-2'>
+        <div className='text-2xl font-light flex items-center gap-2'>
             {/*** The Icon */}
             <div 
-            style={{backgroundColor:defaultColor}}
-            className='p-2 rounded-md'>
-                <Image src={"/assets/logo/logoipsum-298.svg"} alt='logo' width={"42"} height={"42"}/>
+            style={{backgroundColor:defaultColor.default}}
+            className='rounded-md ml-2'>
+                <Image src={"/assets/logo/logoipsum-298.svg"} alt='logo' width={"34"} height={"34"} className='flex p-2 rounded-md  items-center bg-customed h-34 w-34' />
 
             </div>
             {/*** The Name App */}
@@ -25,7 +25,7 @@ const LogoAndName = (props: Props) => {
 
             </span>
 
-        </span>
+        </div>
     </div>
   )
 }

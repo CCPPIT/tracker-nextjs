@@ -22,7 +22,7 @@ const Buttons = (props: Props) => {
          <div className='mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center'>
           <Link href={'/sign-in'}>
           <Button variant={"secondary"} className={`block sm:w-32 w-full border rounded-lg px-9 py-3 text-sm font-semibold
-          text-white transition focus:outline-none `}>Sign In</Button>
+          text-white transition focus:outline-none bg-slate-700 `}>Sign In</Button>
           </Link>
         
         <Link href={'/sign-up'}>

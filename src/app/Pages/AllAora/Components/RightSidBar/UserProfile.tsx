@@ -12,7 +12,7 @@ const UserProfile = (props: Props) => {
     }
     const {user}=useUser();
   return (
-    <div className='flex flex-col items-center justify-center mt-9'>
+    <div className='flex flex-col items-center justify-center mt-8 gap-3 max-lg:hidden'>
         <UserButton appearance={userButtonAppearance}/>
         <span>{user?.fullName}</span>
     </div>
