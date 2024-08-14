@@ -20,6 +20,10 @@ export type GlobalContextType={
     AoraWindowObject:{
         openAoraWindow:boolean,
         setOpenAoraWindow:React.Dispatch<React.SetStateAction<boolean>>
+    },
+    OpenIconWindowObject:{
+        openIconWindow:boolean,
+        setOpenIconWindow:React.Dispatch<React.SetStateAction<boolean>>
     }
 
 }

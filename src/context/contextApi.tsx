@@ -23,6 +23,10 @@ const GlobalContext=createContext<GlobalContextType>({
     AoraWindowObject:{
         openAoraWindow:false,
         setOpenAoraWindow:()=>{}
+    },
+    OpenIconWindowObject:{
+        openIconWindow:false,
+        setOpenIconWindow:()=>{}
     }
 });
 export const GlobalContextProvider=({children}:{children:React.ReactNode})=>{
@@ -35,6 +39,7 @@ export const GlobalContextProvider=({children}:{children:React.ReactNode})=>{
     const [openSideBar,setOpenSideBar]=useState(false);
     const [darkModeItems,setDarkModeItems]=useState(false)
     const[openAoraWindow,setOpenAoraWindow]=useState(false);
+    const [openIconWindow,setOpenIconWindow]=useState(false)
     const [isDarkMode,setIsDarkMode]=useState<DarkModeItem[]>([
         {id:1,icon:faSun,isSelected:true},
         {id:2,icon:faMoon,isSelected:false}
@@ -42,7 +47,8 @@ export const GlobalContextProvider=({children}:{children:React.ReactNode})=>{
     return(
         <GlobalContext.Provider value={{menuItemsObject:{menuItems,setMenuItems},openSideBarObject:{openSideBar,setOpenSideBar}
         ,darkModeObject:{isDarkMode,setIsDarkMode,darkModeItems,setDarkModeItems},
-        AoraWindowObject:{openAoraWindow,setOpenAoraWindow}
+        AoraWindowObject:{openAoraWindow,setOpenAoraWindow},
+        OpenIconWindowObject:{openIconWindow,setOpenIconWindow}
         }}>
             {children}
 
